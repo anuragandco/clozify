@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clozify</title>
+<title>Clozify — Convert More Leads. Book More Jobs.</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1665,6 +1664,18 @@ footer p { font-size: 13px; color: var(--muted2); }
   .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
   .pricing-card { padding: 28px 20px; }
 
+  /* Action thumbnails grid — 3 columns on mobile */
+  [style*="grid-template-columns:repeat(6,1fr)"] { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+
+  /* Agent thumbnail cards in pricing — single column */
+  [style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr !important; }
+
+  /* Pricing cards — stack on mobile */
+  [style*="grid-template-columns:1fr 1fr"][style*="max-width:900px"] { grid-template-columns: 1fr !important; }
+
+  /* Package feature thumbnails — single column */
+  [style*="grid-template-columns:1fr 1fr"][style*="margin-bottom:28px"] { grid-template-columns: 1fr !important; }
+
   /* Compare table */
   .compare-section { overflow-x: auto; }
   .full-compare-section { overflow-x: auto; }
@@ -1678,6 +1689,58 @@ footer p { font-size: 13px; color: var(--muted2); }
 
   /* Marketing services */
   .marketing-services { grid-template-columns: 1fr; }
+}
+/* ACTION THUMBNAILS */
+.action-thumb {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 10px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: default;
+}
+.action-thumb:hover {
+  border-color: var(--blue-400);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.action-thumb-icon { font-size: 24px; margin-bottom: 7px; }
+.action-thumb-label { font-size: 11px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+
+/* PACKAGE FEATURE THUMBNAILS */
+.pkg-thumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.pkg-thumb:hover { border-color: var(--blue-400); background: var(--blue-50); }
+.pkg-thumb-icon { font-size: 16px; flex-shrink: 0; }
+.pkg-thumb-text { font-size: 12px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+.pkg-thumb-full { grid-column: 1 / -1; }
+.pkg-thumb-dark {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+.pkg-thumb-dark:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
+.pkg-thumb-dark .pkg-thumb-text { color: rgba(255,255,255,0.85); }
+
+@media (max-width: 960px) {
+  .action-thumb-grid { grid-template-columns: repeat(4,1fr) !important; }
+}
+@media (max-width: 640px) {
+  /* agent thumbnails in pricing */
+  .action-thumb { padding: 12px 8px; }
+  .action-thumb-icon { font-size: 20px; }
+  .action-thumb-label { font-size: 10px; }
+  /* pricing cards thumbnails */
+  .pkg-thumb { padding: 8px 10px; }
+  .pkg-thumb-text { font-size: 11px; }
 }
 </style>
 </head>
@@ -1735,15 +1798,11 @@ footer p { font-size: 13px; color: var(--muted2); }
     </div>
     <div class="hero-stat">
       <span class="hero-stat-num">3 in 1</span>
-      <span class="hero-stat-label">Conversion, reputation and operations in one system</span>
+      <span class="hero-stat-label">Marketing, sales and operations in one system</span>
     </div>
     <div class="hero-stat">
       <span class="hero-stat-num">24/7</span>
       <span class="hero-stat-label">Always on, never misses a lead</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">48hr</span>
-      <span class="hero-stat-label">Average time to go fully live</span>
     </div>
   </div>
 </section>
@@ -1812,23 +1871,23 @@ footer p { font-size: 13px; color: var(--muted2); }
   <div class="container">
     <span class="label reveal">The Numbers</span>
     <h2 class="section-title reveal">What a 5% lift in<br>conversion rate actually means.</h2>
-    <p class="section-sub reveal reveal-delay-1">If you're generating 100 leads a month at an average job value of $800, here's how it adds up in real dollars.</p>
+    <p class="section-sub reveal reveal-delay-1">If you're generating 100 leads a month at an average job value of $3,000, here's what that looks like in real dollars.</p>
 
     <div class="bar-chart-wrap reveal">
-      <p class="bar-chart-title">Monthly revenue comparison — 100 leads, $800 avg job value</p>
+      <p class="bar-chart-title">Monthly revenue comparison — 100 leads, $3,000 avg job value</p>
       <div class="bar-chart" id="revenueChart">
         <div class="bar-group">
-          <span class="bar-val">$16,000</span>
+          <span class="bar-val">$60,000</span>
           <div class="bar bar-typical" id="bar1" style="height:0%"></div>
           <div class="bar-label">Without Clozify<br><small style="color:#94A3B8;font-size:11px;">20% conversion</small></div>
         </div>
         <div class="bar-group">
-          <span class="bar-val">$20,000</span>
+          <span class="bar-val">$75,000</span>
           <div class="bar bar-clozify" id="bar2" style="height:0%"></div>
           <div class="bar-label">With Clozify<br><small style="color:#2563EB;font-size:11px;">25% conversion</small></div>
         </div>
         <div class="bar-group">
-          <span class="bar-val">$24,000</span>
+          <span class="bar-val">$90,000</span>
           <div class="bar bar-clozify" id="bar3" style="height:0%;opacity:0.75"></div>
           <div class="bar-label">With Clozify Pro<br><small style="color:#2563EB;font-size:11px;">30% conversion</small></div>
         </div>
@@ -1837,7 +1896,22 @@ footer p { font-size: 13px; color: var(--muted2); }
         <div class="legend-item"><div class="legend-dot" style="background:#E2E8F0;"></div>Typical conversion without automation</div>
         <div class="legend-item"><div class="legend-dot" style="background:#2563EB;"></div>With Clozify lead engagement system</div>
       </div>
-      <p style="font-size:13px;color:#64748B;margin-top:16px;line-height:1.6;">That's an additional $4,000 to $8,000 in revenue per month — from the leads you're already spending money to generate. One extra booked installation job alone can be worth $10,000–$18,000. Across 12 months, that's <strong style="color:#0F172A;">$48,000 to $96,000 in recovered revenue</strong> you were previously leaving on the table — and the system pays for itself with a single job.</p>
+
+      <!-- Revenue gain callout -->
+      <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:24px 28px;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid var(--border2);border-radius:16px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-600);margin-bottom:8px;">Minimum Monthly Gain</div>
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--navy);line-height:1;">+$15,000</div>
+          <div style="font-size:14px;color:var(--muted);margin-top:6px;">From a 5% lift in conversion alone</div>
+        </div>
+        <div style="padding:24px 28px;background:var(--navy);border-radius:16px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-400);margin-bottom:8px;">Best Case Monthly Gain</div>
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:white;line-height:1;">+$30,000</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:6px;">At 30% conversion vs 20% baseline</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:#64748B;margin-top:20px;line-height:1.6;">That's <strong style="color:#0F172A;">$15,000 to $30,000 in additional monthly revenue</strong> — from the same leads you're already paying to generate. You pay $1,800 and get at least $30,000 back. A single extra job often pays for the entire month. Across 12 months, that's <strong style="color:#0F172A;">$180,000 to $360,000 in recovered revenue</strong> sitting right there waiting to be captured.</p>
     </div>
   </div>
 </section>
@@ -1850,44 +1924,44 @@ footer p { font-size: 13px; color: var(--muted2); }
     <p class="section-sub reveal reveal-delay-1" style="margin-bottom: 48px;">Most businesses pay for five different tools and still fall through the cracks. Clozify puts it all in one place, built to work together from day one.</p>
 
     <div class="agent-nav reveal">
-      <button class="agent-btn active" onclick="showAgent(0)">Agent 1: Convert</button>
-      <button class="agent-btn" onclick="showAgent(1)">Agent 2: Reputation</button>
-      <button class="agent-btn" onclick="showAgent(2)">Agent 3: Intelligence</button>
+      <button class="agent-btn active" onclick="showAgent(0)">Agent 1: Marketing</button>
+      <button class="agent-btn" onclick="showAgent(1)">Agent 2: Sales</button>
+      <button class="agent-btn" onclick="showAgent(2)">Agent 3: Operations</button>
     </div>
 
     <!-- AGENT 1 -->
     <div class="agent-panel active" id="agent-0">
       <div class="agent-info">
         <div class="agent-eyebrow eyebrow-blue">Available on all plans</div>
-        <h2 class="agent-title">The Converter</h2>
-        <p class="agent-body">Your 24/7 AI receptionist that answers every call, qualifies every lead and books the appointment before your competitor even calls back. It handles the whole thing so you never have to.</p>
+        <h2 class="agent-title">The Marketing Agent</h2>
+        <p class="agent-body">Your 24/7 AI front-line that engages every lead the moment they come in — by voice, DM, email and SMS — before they've even thought about calling someone else.</p>
         <div class="feature-list">
           <div class="feature-item">
-            <div class="feature-item-icon">📞</div>
-            <div class="feature-item-text"><h4>Answers every call instantly</h4><p>Picks up in under 2 seconds. No hold music, no missed calls, no voicemail.</p></div>
+            <div class="feature-item-icon">🤖</div>
+            <div class="feature-item-text"><h4>AI voice — answers in 2 seconds</h4><p>Picks up every call instantly, 24/7. No hold music, no missed calls, no voicemail.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">💬</div>
+            <div class="feature-item-text"><h4>DM and social outreach automation</h4><p>Engages leads from Instagram, Facebook and Google Business the moment they message you.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">📧</div>
+            <div class="feature-item-text"><h4>Multi-step email sequences</h4><p>Automated follow-up emails that nurture the lead until they're ready to book.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">📱</div>
+            <div class="feature-item-text"><h4>SMS follow-up flows</h4><p>Instant text follow-ups that re-engage leads who didn't pick up or didn't reply.</p></div>
           </div>
           <div class="feature-item">
             <div class="feature-item-icon">🎯</div>
-            <div class="feature-item-text"><h4>Qualifies and scores leads</h4><p>Asks the right questions and separates serious buyers from tire-kickers automatically.</p></div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-icon">📅</div>
-            <div class="feature-item-text"><h4>Books straight into your calendar</h4><p>Confirms the appointment, sends the customer a reminder and notifies your team.</p></div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-icon">🌙</div>
-            <div class="feature-item-text"><h4>Works after hours</h4><p>2am or 2pm, same quality, no extra staff, no overtime.</p></div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-icon">😤</div>
-            <div class="feature-item-text"><h4>Handles complaints before they escalate</h4><p>Detects frustration, de-escalates with care and alerts your team immediately.</p></div>
+            <div class="feature-item-text"><h4>Lead qualification and scoring</h4><p>Separates serious buyers from tire-kickers automatically — before you spend time on them.</p></div>
           </div>
         </div>
       </div>
       <div class="agent-visual">
         <div class="visual-header">
           <div class="visual-dots"><div class="visual-dot visual-dot-r"></div><div class="visual-dot visual-dot-y"></div><div class="visual-dot visual-dot-g"></div></div>
-          <span class="visual-title">Clozify — Live Call</span>
+          <span class="visual-title">Clozify — Marketing Agent</span>
           <span class="visual-status">Active</span>
         </div>
         <div class="visual-body">
@@ -1896,12 +1970,12 @@ footer p { font-size: 13px; color: var(--muted2); }
           <div class="chat-row" id="cr3"><div class="chat-avatar">👤</div><div class="chat-bubble">Yes, perfect.</div></div>
           <div class="chat-row right" id="cr4"><div class="chat-avatar">🤖</div><div class="chat-bubble">Done. You're booked for today 2–4pm. Confirmation is on its way to you now.</div></div>
           <div class="visual-result" id="vr1">
-            <div class="visual-result-label">✓ Handled automatically</div>
+            <div class="visual-result-label">✓ Lead engaged automatically</div>
             <div class="visual-result-items">
-              <div class="visual-result-item">Appointment booked for 2–4pm today</div>
+              <div class="visual-result-item">Responded in under 2 seconds</div>
+              <div class="visual-result-item">Lead qualified and scored</div>
               <div class="visual-result-item">SMS confirmation sent to customer</div>
-              <div class="visual-result-item">Team notified with job details</div>
-              <div class="visual-result-item">CRM updated instantly</div>
+              <div class="visual-result-item">Passed to Sales Agent</div>
             </div>
           </div>
         </div>
@@ -1911,49 +1985,53 @@ footer p { font-size: 13px; color: var(--muted2); }
     <!-- AGENT 2 -->
     <div class="agent-panel" id="agent-1">
       <div class="agent-info">
-        <div class="agent-eyebrow eyebrow-indigo">Pro and Pro Plus</div>
-        <h2 class="agent-title">The Reputation Agent</h2>
-        <p class="agent-body">Your automated review engine that turns completed jobs into five-star Google reviews, catches unhappy customers before they post publicly and keeps past clients coming back.</p>
+        <div class="agent-eyebrow eyebrow-indigo">Available on all plans</div>
+        <h2 class="agent-title">The Sales Agent</h2>
+        <p class="agent-body">Your automated closer that takes a qualified lead and books the job — straight into your calendar, with reminders sent, objections handled, and your CRM updated automatically.</p>
         <div class="feature-list">
           <div class="feature-item">
-            <div class="feature-item-icon">⭐</div>
-            <div class="feature-item-text"><h4>Post-job review requests</h4><p>Calls or texts customers after every job at the perfect moment to ask for a review.</p></div>
+            <div class="feature-item-icon">📅</div>
+            <div class="feature-item-text"><h4>Direct calendar booking</h4><p>Confirms the appointment, picks the right time slot, and books it without any human intervention.</p></div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-icon">🛡️</div>
-            <div class="feature-item-text"><h4>Bad review interception</h4><p>Catches dissatisfied customers before they go public and routes them to your team first.</p></div>
+            <div class="feature-item-icon">🔔</div>
+            <div class="feature-item-text"><h4>Automated appointment reminders</h4><p>Sends reminders by voice and SMS so no-shows drop and your calendar stays full.</p></div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-icon">🔄</div>
-            <div class="feature-item-text"><h4>Re-engagement campaigns</h4><p>Reaches out to past customers at the right time with seasonal reminders and maintenance check-ins.</p></div>
+            <div class="feature-item-icon">🏷️</div>
+            <div class="feature-item-text"><h4>Objection handling flows</h4><p>Handles price questions, timing hesitations and "let me think about it" responses automatically.</p></div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-icon">🤝</div>
-            <div class="feature-item-text"><h4>Referral activation</h4><p>Asks happy customers for referrals right after a great experience while the feeling is fresh.</p></div>
+            <div class="feature-item-icon">🔌</div>
+            <div class="feature-item-text"><h4>GHL + CRM integration</h4><p>Every booked job syncs to GoHighLevel, HubSpot, Zoho, Salesforce — instantly, automatically.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">😤</div>
+            <div class="feature-item-text"><h4>Complaint detection and escalation</h4><p>Detects frustration during conversations and routes them to your team before it becomes a problem.</p></div>
           </div>
         </div>
       </div>
       <div class="agent-visual">
         <div class="visual-header">
           <div class="visual-dots"><div class="visual-dot visual-dot-r"></div><div class="visual-dot visual-dot-y"></div><div class="visual-dot visual-dot-g"></div></div>
-          <span class="visual-title">Clozify — Reputation Engine</span>
+          <span class="visual-title">Clozify — Sales Agent</span>
           <span class="visual-status">Active</span>
         </div>
         <div class="visual-body">
           <div style="padding:16px;background:var(--off-white);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;">
-            <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Review Request Sent</div>
-            <div style="font-size:13px;color:var(--slate);line-height:1.5;">Hi Marcus, thanks for choosing us yesterday. We'd love to hear how it went. Would you mind leaving us a quick Google review?</div>
+            <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Job Booked</div>
+            <div style="font-size:13px;color:var(--slate);line-height:1.5;">Hi Sarah, your HVAC inspection is confirmed for Thursday 10am. We'll send a reminder the night before. Reply STOP to cancel.</div>
             <div style="margin-top:10px;display:flex;gap:8px;">
-              <span style="background:var(--blue-600);color:white;font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;">Leave a Review</span>
-              <span style="background:var(--off-white);color:var(--muted);font-size:11px;font-weight:600;padding:5px 12px;border-radius:100px;border:1px solid var(--border);">Not Now</span>
+              <span style="background:var(--blue-600);color:white;font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;">Add to Calendar</span>
+              <span style="background:var(--off-white);color:var(--muted);font-size:11px;font-weight:600;padding:5px 12px;border-radius:100px;border:1px solid var(--border);">Reschedule</span>
             </div>
           </div>
           <div style="padding:16px;background:var(--off-white);border:1px solid var(--border);border-radius:12px;">
             <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">This Week</div>
             <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;justify-content:space-between;font-size:13px;"><span >New 5-star reviews</span><span style="font-weight:700;color:var(--blue-600);">+4</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:13px;"><span >Intercepted complaints</span><span style="font-weight:700;color:#D97706;">2</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:13px;"><span >Referral requests sent</span><span style="font-weight:700;color:var(--blue-600);">7</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;"><span>Jobs booked</span><span style="font-weight:700;color:var(--blue-600);">11</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;"><span>Objections handled</span><span style="font-weight:700;color:#D97706;">4</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;"><span>No-shows prevented</span><span style="font-weight:700;color:var(--blue-600);">3</span></div>
             </div>
           </div>
         </div>
@@ -1963,32 +2041,36 @@ footer p { font-size: 13px; color: var(--muted2); }
     <!-- AGENT 3 -->
     <div class="agent-panel" id="agent-2">
       <div class="agent-info">
-        <div class="agent-eyebrow eyebrow-teal">Pro Plus Only</div>
-        <h2 class="agent-title">The Intelligence Agent</h2>
-        <p class="agent-body">Your daily AI command center that briefs you on everything that matters — pipeline, dispatch, revenue and team performance — before you've even had your first coffee.</p>
+        <div class="agent-eyebrow eyebrow-teal">Available on all plans</div>
+        <h2 class="agent-title">The Operations Agent</h2>
+        <p class="agent-body">Your AI ops manager that makes sure every booked job is executed — tracking dispatch, collecting reviews, re-engaging past clients and briefing you on revenue every single day.</p>
         <div class="feature-list">
           <div class="feature-item">
-            <div class="feature-item-icon">📊</div>
-            <div class="feature-item-text"><h4>Daily sales briefing</h4><p>Every morning you get a summary of open leads, booked jobs, follow-ups needed and revenue on track.</p></div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-icon">📧</div>
-            <div class="feature-item-text"><h4>Inbox and email summary</h4><p>Never read a long thread again. Your agent summarizes what matters and flags what needs action.</p></div>
-          </div>
-          <div class="feature-item">
             <div class="feature-item-icon">🚐</div>
-            <div class="feature-item-text"><h4>Dispatch and field team tracking</h4><p>See where every team member is, what job they're on and what's coming up next.</p></div>
+            <div class="feature-item-text"><h4>Dispatch and field team tracking</h4><p>See where every team member is, what job they're on, and what's coming up — in real time.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">📊</div>
+            <div class="feature-item-text"><h4>Daily ops and revenue briefings</h4><p>Every morning you get a full summary of open leads, booked jobs, follow-ups needed and revenue on track.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">⭐</div>
+            <div class="feature-item-text"><h4>Post-job review requests</h4><p>Calls or texts customers after every job at the perfect moment to ask for a Google review.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">🛡️</div>
+            <div class="feature-item-text"><h4>Bad review interception</h4><p>Catches dissatisfied customers before they go public and routes them to your team first.</p></div>
           </div>
           <div class="feature-item">
             <div class="feature-item-icon">📈</div>
-            <div class="feature-item-text"><h4>Revenue forecasting</h4><p>Know what this month is shaping up to be before it's over — and adjust while you still can.</p></div>
+            <div class="feature-item-text"><h4>Revenue forecasting and pipeline</h4><p>Know what this month is shaping up to be before it's over — and adjust while you still can.</p></div>
           </div>
         </div>
       </div>
       <div class="agent-visual">
         <div class="visual-header">
           <div class="visual-dots"><div class="visual-dot visual-dot-r"></div><div class="visual-dot visual-dot-y"></div><div class="visual-dot visual-dot-g"></div></div>
-          <span class="visual-title">Clozify — Daily Briefing</span>
+          <span class="visual-title">Clozify — Operations Agent</span>
           <span class="visual-status">Active</span>
         </div>
         <div class="visual-body">
@@ -2010,6 +2092,13 @@ footer p { font-size: 13px; color: var(--muted2); }
               <div style="font-size:12px;font-weight:700;color:#92400E;margin-bottom:4px;">Action needed</div>
               <div style="font-size:13px;color:var(--slate);">3 unanswered emails from this week need a response today.</div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+          <div class="feature-item">
+            <div class="feature-item-icon">🔄</div>
+            <div class="feature-item-text"><h4>Re-engagement campaigns</h4><p>Reaches out to past clients automatically with seasonal check-ins and maintenance reminders.</p></div>
           </div>
         </div>
       </div>
@@ -2202,93 +2291,171 @@ footer p { font-size: 13px; color: var(--muted2); }
 <section class="pricing-section" id="pricing">
   <div class="container">
     <span class="label reveal">Pricing</span>
-    <h2 class="section-title reveal">Straightforward pricing.<br>No surprises.</h2>
-    <p class="section-sub reveal reveal-delay-1" style="margin-bottom: 32px;">No long-term commitments. No retainers. No setup fees. Pay month to month and cancel any time — unlike other platforms that lock you in for a year before you see results.</p>
+    <h2 class="section-title reveal">Two packages.<br>One complete business.</h2>
 
-    <div class="pricing-note reveal reveal-delay-2">
-      No setup fee · No long-term contract · Cancel any time
+    <!-- AGENT THUMBNAILS -->
+    <div class="reveal" style="margin-bottom:48px;margin-top:48px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);margin-bottom:28px;text-align:center;">What you're getting</div>
+
+      <!-- headline bar -->
+      <div style="margin-bottom:28px;padding:28px 32px;background:var(--navy);border-radius:20px;text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,30px);color:white;line-height:1.3;">3 AI Agents + 18 Actions + GHL Integration<br><em style="color:var(--blue-400);">for the price of one.</em></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+        <!-- Agent 1 -->
+        <div style="background:var(--white);border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);">
+          <div style="background:linear-gradient(135deg,#2563EB,#1D4ED8);padding:24px 20px 18px;">
+            <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:6px;">Agent 01</div>
+            <div style="font-size:11px;background:rgba(255,255,255,0.15);color:white;border-radius:100px;padding:3px 12px;display:inline-block;font-weight:600;margin-bottom:12px;">🎯 Marketing Agent</div>
+            <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white;line-height:1.25;">Engages the lead the moment they come in.</div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Included Actions</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🤖</span>AI Voice — answers in 2 seconds</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">💬</span>DM / Social outreach automation</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">📧</span>Multi-step email sequences</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">📱</span>SMS follow-up flows</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🎯</span>Lead qualification + scoring</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:var(--blue-50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🌙</span>24/7 after-hours coverage</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent 2 -->
+        <div style="background:var(--white);border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);">
+          <div style="background:linear-gradient(135deg,#4338CA,#3730A3);padding:24px 20px 18px;">
+            <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:6px;">Agent 02</div>
+            <div style="font-size:11px;background:rgba(255,255,255,0.15);color:white;border-radius:100px;padding:3px 12px;display:inline-block;font-weight:600;margin-bottom:12px;">📅 Sales Agent</div>
+            <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white;line-height:1.25;">Books the job. Fills your calendar.</div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Included Actions</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(99,102,241,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">📅</span>Direct calendar booking</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(99,102,241,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🔔</span>Automated appointment reminders</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(99,102,241,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🏷️</span>Objection handling flows</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(99,102,241,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🔌</span>GHL CRM integration</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(99,102,241,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">⚡</span>HubSpot / Zoho / Salesforce sync</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(99,102,241,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">😤</span>Complaint detection + escalation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent 3 -->
+        <div style="background:var(--white);border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);">
+          <div style="background:linear-gradient(135deg,#0F766E,#0D9488);padding:24px 20px 18px;">
+            <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:6px;">Agent 03</div>
+            <div style="font-size:11px;background:rgba(255,255,255,0.15);color:white;border-radius:100px;padding:3px 12px;display:inline-block;font-weight:600;margin-bottom:12px;">⚙️ Operations Agent</div>
+            <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white;line-height:1.25;">Makes sure the job gets executed flawlessly.</div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Included Actions</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(20,184,166,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🚐</span>Dispatch + field team tracking</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(20,184,166,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">📊</span>Daily ops + revenue briefings</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(20,184,166,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">⭐</span>Post-job review requests</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(20,184,166,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🛡️</span>Bad review interception</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(20,184,166,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">📈</span>Revenue forecasting + pipeline</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate);"><span style="width:20px;height:20px;background:rgba(20,184,166,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">🔄</span>Re-engagement campaigns</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="pricing-grid">
-      <div class="pricing-card reveal">
-        <div class="plan-tier">Starter</div>
+    <!-- FEATURE THUMBNAIL GRID -->
+    <div class="reveal" style="margin-bottom:64px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);margin-bottom:28px;text-align:center;">All 18 actions included across every package</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;">
+        <div class="action-thumb"><div class="action-thumb-icon">🤖</div><div class="action-thumb-label">AI Voice Calls</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">💬</div><div class="action-thumb-label">DM Automation</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">📧</div><div class="action-thumb-label">Email Sequences</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">📱</div><div class="action-thumb-label">SMS Follow-up</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">📅</div><div class="action-thumb-label">Calendar Booking</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🔌</div><div class="action-thumb-label">GHL Integration</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">⚡</div><div class="action-thumb-label">CRM Sync</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🎯</div><div class="action-thumb-label">Lead Scoring</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🌙</div><div class="action-thumb-label">24/7 Coverage</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">😤</div><div class="action-thumb-label">Complaint Detection</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">⭐</div><div class="action-thumb-label">Review Requests</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🛡️</div><div class="action-thumb-label">Review Interception</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🔄</div><div class="action-thumb-label">Re-engagement</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🤝</div><div class="action-thumb-label">Referral Activation</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🚐</div><div class="action-thumb-label">Dispatch Tracking</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">📊</div><div class="action-thumb-label">Daily Briefings</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">📈</div><div class="action-thumb-label">Revenue Forecasting</div></div>
+        <div class="action-thumb"><div class="action-thumb-icon">🎓</div><div class="action-thumb-label">Team Training</div></div>
+      </div>
+    </div>
+
+    <!-- 2 PRICING CARDS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto;">
+
+      <!-- PRO: LEAD CONVERSION -->
+      <div class="pricing-card reveal" style="border-width:1.5px;">
+        <div class="plan-tier" style="margin-bottom:4px;">Pro</div>
         <div class="plan-price-wrap">
           <div class="plan-price"><sup>$</sup>1,800<sub>/mo</sub></div>
         </div>
-        <p class="plan-desc">For growing businesses ready to stop missing calls and start booking jobs automatically.</p>
-        <div class="plan-pay-note">Unlimited minutes included — pay only for carrier costs as you go</div>
+        <p class="plan-desc" style="margin-bottom:4px;">Lead conversion engine. 3 AI agents + 18 actions. Everything from the moment a lead arrives to the job being booked and executed.</p>
+        <div class="plan-pay-note">3 Agents + 18 Actions + GHL — for less than the price of one tool</div>
         <div class="plan-divider"></div>
-        <div class="plan-features-label">Agent 1: Converter</div>
-        <ul class="plan-features">
-          <li><span class="check-mark">✓</span>24/7 AI voice answering</li>
-          <li><span class="check-mark">✓</span>Lead qualification and scoring</li>
-          <li><span class="check-mark">✓</span>Appointment booking to your calendar</li>
-          <li><span class="check-mark">✓</span>After-hours coverage</li>
-          <li><span class="check-mark">✓</span>Complaint detection and escalation alerts</li>
-          <li><span class="check-mark">✓</span>SMS and email follow-up sequences</li>
-          <li><span class="check-mark">✓</span>GHL + CRM integration (HubSpot, Zoho and more)</li>
-          <li><span class="check-mark">✓</span>Full team training and onboarding</li>
-          <li><span class="check-mark">✓</span>Up to 3 team seats</li>
-          <li class="off"><span class="x-mark">✕</span>Reputation Agent</li>
-          <li class="off"><span class="x-mark">✕</span>Intelligence Agent</li>
-        </ul>
+        <div class="plan-features-label">What's included</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:28px;">
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">🤖</span><span class="pkg-thumb-text">AI Voice</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">💬</span><span class="pkg-thumb-text">DM Automation</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">📧</span><span class="pkg-thumb-text">Email Sequences</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">📱</span><span class="pkg-thumb-text">SMS Follow-up</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">📅</span><span class="pkg-thumb-text">Calendar Booking</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">🔌</span><span class="pkg-thumb-text">GHL Setup</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">⭐</span><span class="pkg-thumb-text">Review Requests</span></div>
+          <div class="pkg-thumb"><span class="pkg-thumb-icon">🚐</span><span class="pkg-thumb-text">Dispatch Tracking</span></div>
+          <div class="pkg-thumb pkg-thumb-full"><span class="pkg-thumb-icon">📊</span><span class="pkg-thumb-text">Daily Revenue Briefings + All 18 Actions</span></div>
+        </div>
         <a href="https://calendly.com/consult-anuragandco/30min" target="_blank" class="plan-cta plan-cta-outline" id="pricing-starter-btn">Book a Demo</a>
         <p class="plan-fine">No commitment required to start</p>
       </div>
 
-      <div class="pricing-card featured reveal reveal-delay-1">
+      <!-- PRO PLUS: LEAD GENERATION + CONVERSION -->
+      <div class="pricing-card featured reveal reveal-delay-1" style="border-width:1.5px;">
         <div class="featured-pill">Most Popular</div>
-        <div class="plan-tier">Pro</div>
+        <div class="plan-tier">Pro Plus</div>
         <div class="plan-price-wrap">
-          <div class="plan-price"><sup>$</sup>3,300<sub>/mo</sub></div>
+          <div class="plan-price"><sup>$</sup>2,400<sub>/mo</sub></div>
         </div>
-        <p class="plan-desc">For businesses serious about reputation, retention and growing through referrals.</p>
-        <div class="plan-pay-note">Unlimited minutes included — pay only for carrier costs as you go</div>
+        <p class="plan-desc">Everything in Pro, plus we build the entire lead generation machine — Google Ads, landing pages, offer creation, and full sales assets.</p>
+        <div class="plan-pay-note">Pro + full lead gen stack included</div>
         <div class="plan-divider"></div>
-        <div class="plan-features-label">Agents 1 and 2</div>
-        <ul class="plan-features">
-          <li><span class="check-mark">✓</span>Everything in Starter</li>
-          <li><span class="check-mark">✓</span>Up to 10 team seats</li>
-          <li><span class="check-mark">✓</span>Post-job review request calls and SMS</li>
-          <li><span class="check-mark">✓</span>Bad review interception and flagging</li>
-          <li><span class="check-mark">✓</span>Re-engagement campaigns for past customers</li>
-          <li><span class="check-mark">✓</span>Objection handling flows</li>
-          <li><span class="check-mark">✓</span>Referral activation sequences</li>
-          <li><span class="check-mark">✓</span>Salesforce and HubSpot deep integration</li>
-          <li><span class="check-mark">✓</span>Priority support line</li>
-          <li class="off"><span class="x-mark">✕</span>Intelligence Agent</li>
-        </ul>
+        <div class="plan-features-label">Everything in Pro, plus</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:28px;">
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">🎯</span><span class="pkg-thumb-text">Google Ads</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">🌐</span><span class="pkg-thumb-text">Landing Page</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">💡</span><span class="pkg-thumb-text">Offer Creation</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">📋</span><span class="pkg-thumb-text">Sales Assets</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">✍️</span><span class="pkg-thumb-text">Ad Copywriting</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">🔬</span><span class="pkg-thumb-text">A/B Testing</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">📉</span><span class="pkg-thumb-text">Attribution Reports</span></div>
+          <div class="pkg-thumb pkg-thumb-dark"><span class="pkg-thumb-icon">👤</span><span class="pkg-thumb-text">Dedicated Manager</span></div>
+          <div class="pkg-thumb pkg-thumb-dark pkg-thumb-full"><span class="pkg-thumb-icon">➕</span><span class="pkg-thumb-text">Everything in Pro included</span></div>
+        </div>
         <a href="https://calendly.com/consult-anuragandco/30min" target="_blank" class="plan-cta plan-cta-filled" id="pricing-pro-btn">Book a Demo</a>
         <p class="plan-fine">No commitment required to start</p>
       </div>
 
-      <div class="pricing-card reveal reveal-delay-2">
-        <div class="plan-tier">Pro Plus</div>
-        <div class="plan-price-wrap">
-          <div class="plan-price"><sup>$</sup>5,400<sub>/mo</sub></div>
-        </div>
-        <p class="plan-desc">For operators who want full visibility and total control. Your AI command center.</p>
-        <div class="plan-pay-note">Unlimited minutes included — pay only for carrier costs as you go</div>
-        <div class="plan-divider"></div>
-        <div class="plan-features-label">All 3 Agents included</div>
-        <ul class="plan-features">
-          <li><span class="check-mark">✓</span>Everything in Pro</li>
-          <li><span class="check-mark">✓</span>Unlimited team seats</li>
-          <li><span class="check-mark">✓</span>Daily AI sales briefing</li>
-          <li><span class="check-mark">✓</span>Inbox and email summary agent</li>
-          <li><span class="check-mark">✓</span>Dispatch and field team tracking</li>
-          <li><span class="check-mark">✓</span>Revenue forecasting and pipeline view</li>
-          <li><span class="check-mark">✓</span>Conversion funnel analytics</li>
-          <li><span class="check-mark">✓</span>Custom agent personality and script</li>
-          <li><span class="check-mark">✓</span>Dedicated success manager</li>
-          <li><span class="check-mark">✓</span>Custom AI agent builds on request</li>
-        </ul>
-        <a href="https://calendly.com/consult-anuragandco/30min" target="_blank" class="plan-cta plan-cta-outline" id="pricing-plus-btn">Book a Demo</a>
-        <p class="plan-fine">No commitment required to start</p>
+    </div>
+
+    <!-- no setup note below the cards -->
+    <div style="text-align:center;margin-top:28px;" class="reveal">
+      <div class="pricing-note" style="display:inline-flex;">
+        No setup fee · No long-term contract · Cancel any time
       </div>
     </div>
 
-    <div class="minutes-note reveal">
+    <div class="minutes-note reveal" style="max-width:900px;margin:24px auto 0;">
       <strong>How minutes work.</strong> All plans include unlimited inbound and outbound call capacity. US carrier costs are billed separately at cost — you only pay for what you actually use, nothing more. Think of it like your phone bill: predictable, transparent and always in your control.
     </div>
   </div>
@@ -2407,40 +2574,48 @@ footer p { font-size: 13px; color: var(--muted2); }
         <thead>
           <tr>
             <th>Feature</th>
-            <th>Starter</th>
-            <th class="us-col">Pro</th>
-            <th>Pro Plus</th>
+            <th class="us-col">Pro — $1,800/mo</th>
+            <th>Pro Plus — $2,400/mo</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td colspan="4" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Agent 1: Converter</td></tr>
-          <tr><td>24/7 AI voice answering</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Lead qualification and scoring</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Calendar appointment booking</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>After-hours call coverage</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Complaint detection and escalation</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>SMS and email follow-up</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>GoHighLevel (GHL) setup included</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Full team training and onboarding</td><td><span class="check-g">✓</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Team seats</td><td style="color:var(--muted)">3</td><td class="us-col" style="color:var(--blue-700);font-weight:700;">10</td><td style="color:var(--blue-700);font-weight:700;">Unlimited</td></tr>
+          <tr><td colspan="3" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Agent 1: Marketing Agent</td></tr>
+          <tr><td>AI voice — answers in 2 seconds</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>DM and social outreach automation</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Multi-step email sequences</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>SMS follow-up flows</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Lead qualification and scoring</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>24/7 after-hours coverage</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
 
-          <tr><td colspan="4" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Agent 2: Reputation</td></tr>
-          <tr><td>Post-job review requests</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Bad review interception</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Re-engagement campaigns</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Referral activation</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td colspan="3" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Agent 2: Sales Agent</td></tr>
+          <tr><td>Direct calendar booking</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Automated appointment reminders</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Objection handling flows</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>GoHighLevel (GHL) setup included</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>HubSpot / Zoho / Salesforce sync</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Complaint detection and escalation</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
 
-          <tr><td colspan="4" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Agent 3: Intelligence</td></tr>
-          <tr><td>Daily sales briefing</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Inbox and email summary</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Dispatch and team tracking</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Revenue forecasting</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td colspan="3" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Agent 3: Operations Agent</td></tr>
+          <tr><td>Dispatch and field team tracking</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Daily ops and revenue briefings</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Post-job review requests</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Bad review interception</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Revenue forecasting and pipeline</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Re-engagement campaigns</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
 
-          <tr><td colspan="4" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Platform</td></tr>
-          <tr><td>CRM integrations</td><td style="color:var(--muted);font-size:13px;">HubSpot, Zoho</td><td class="us-col" style="color:var(--muted);font-size:13px;">All major CRMs</td><td style="color:var(--blue-700);font-size:13px;font-weight:700;">All + Custom API</td></tr>
-          <tr><td>Marketing services add-on</td><td><span class="partial">Available</span></td><td class="us-col"><span class="partial">Available</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Custom AI agent builds</td><td><span class="x-mark">✕</span></td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
-          <tr><td>Support level</td><td style="color:var(--muted);font-size:13px;">Email, WhatsApp</td><td class="us-col" style="color:var(--muted);font-size:13px;">Priority line</td><td style="color:var(--blue-700);font-size:13px;font-weight:700;">Dedicated manager</td></tr>
+          <tr><td colspan="3" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Lead Generation (Pro Plus Only)</td></tr>
+          <tr><td>Google Ads — campaign setup + management</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Landing page — built to convert</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Offer creation and messaging</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Sales assets — scripts, proposals, templates</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Full ad creative and copywriting</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>A/B testing and conversion optimization</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Lead gen reporting and attribution</td><td class="us-col"><span class="x-mark">✕</span></td><td><span class="check-g">✓</span></td></tr>
+
+          <tr><td colspan="3" style="padding:20px 24px 8px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);background:var(--off-white);">Platform and Support</td></tr>
+          <tr><td>Full team training and onboarding</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>No long-term contract</td><td class="us-col"><span class="check-g">✓</span></td><td><span class="check-g">✓</span></td></tr>
+          <tr><td>Support level</td><td class="us-col" style="color:var(--muted);font-size:13px;">Email, WhatsApp</td><td style="color:var(--blue-700);font-size:13px;font-weight:700;">Dedicated manager</td></tr>
         </tbody>
       </table>
     </div>
